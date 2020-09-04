@@ -11,6 +11,11 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class UserController extends Controller
 {
+
+    public function user() {
+        return view('user');
+    }
+
     /**
      * Used to get fresh token
      */

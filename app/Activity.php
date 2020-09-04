@@ -21,4 +21,12 @@ class Activity extends Model
      * @var array
      */
     protected $guarded = [];
+
+
+    /**
+     * to make sure that returned participant_ids is in array
+     */
+    protected $casts = [
+        'participant_ids' => 'array'
+    ];
 }

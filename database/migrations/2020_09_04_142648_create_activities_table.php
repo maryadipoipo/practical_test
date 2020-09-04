@@ -22,7 +22,7 @@ class CreateActivitiesTable extends Migration
             $table->text('description', 1000);
             $table->date('start_date');
             $table->date('end_date');
-            $table->json('participants_id')->nullable();
+            $table->json('participant_ids')->nullable();
         });
     }
 

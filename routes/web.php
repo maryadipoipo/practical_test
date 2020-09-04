@@ -17,5 +17,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'jwt.verify'], function (){
     Route::get('home', 'HomeController@home');
+    Route::get('profile', 'ProfileController@profile');
+    Route::get('skill', 'SkillController@skill');
+    Route::get('user', 'UserController@user');
 });
 

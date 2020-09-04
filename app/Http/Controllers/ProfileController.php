@@ -11,6 +11,10 @@ use JWTAuth;
 
 class ProfileController extends Controller
 {
+    public function profile() {
+        return view('profile');
+    }
+    
     public function getAllProfile() {
         try {
             if (! $user = JWTAuth::parseToken()->authenticate()) {
@@ -86,7 +90,8 @@ class ProfileController extends Controller
                 return response()->json(['user_not_found'], 404);
             } else {
                 $tag = Profile::create([
-                    'title' => $request->get('title')
+                    'title' => $request->get('title'),
+                    'user_id' => $user->id,
                 ]);
                 if($tag) {
                     return response()->json([
@@ -185,7 +190,7 @@ class ProfileController extends Controller
                             'status'  => 'OK'
                         ],200);
                     } else {
-                        return response()->json($res_failed, 200);
+                        return response()->json($res_failed, 422);
                     }
                 } else {
                     return response()->json($res_failed, 422);
