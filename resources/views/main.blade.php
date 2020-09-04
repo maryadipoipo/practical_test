@@ -8,9 +8,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script></head>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+    </head>
         
     <body>
+    <div id="unauthorized"> YOU ARE NOT AUTHORIZED TO VIEW THIS PAGE </div>
+    <div id="authorized">
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <a class="navbar-brand" href="#">Activities</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +40,7 @@
             </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn my-2 my-sm-0 text-white">Logout</button>
+                <button id="logout_btn" class="btn my-2 my-sm-0 text-white">Logout</button>
             </form>
         </div>
     </nav>
@@ -46,5 +50,7 @@
         <div class="container">
             @yield('content')
         </div>
+    </div>
     </body>
+    <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script> 
 </html>
