@@ -18,6 +18,7 @@ class AddProfilesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->string('title', 60);
+            $table->integer('user_id')->unsigned()->default(1);
         });
     }
 

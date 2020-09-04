@@ -37,7 +37,11 @@ function getAuthenticatedUser() {
         $('#unauthorized').css('display', 'block');
         $('#authorized').css('display', 'none');
         console.log(err);
-        $('#unauthorized').html("<b>"+ err.responseJSON.message + "</b>"+"<br> You will be redirected to Login page in 3 seconds");
+        $('#unauthorized').html(
+            "YOU ARE NOT AUTHORIZED TO VIEW THIS PAGE<br>"+
+            "<b>"+ err.responseJSON.message + "</b> <br>"+
+            "You will be redirected to Login page in 3 seconds"
+        );
         setTimeout(function(){ 
             window.location.href = "/";
         }, 3000);

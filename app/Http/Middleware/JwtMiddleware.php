@@ -15,6 +15,8 @@ class JwtMiddleware
      */
     public function handle($request, Closure $next)
     {
+        \Log::info("request jwt");
+        \Log::info($request);
         return $next($request);
     }
 }
