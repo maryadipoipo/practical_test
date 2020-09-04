@@ -14,6 +14,7 @@ class AddNewColumnToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->softDeletes();
             $table->string('username');
             $table->json('skill_ids');
             $table->integer('profile_id')->unsigned();
