@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('home', 'HomeController@home');
+Route::group(['middleware' => 'jwt.verify'], function (){
+    Route::get('home', 'HomeController@home');
+});
+
