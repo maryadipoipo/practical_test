@@ -28,6 +28,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * to make sure that returned skill_ids is in array
+     */
+    protected $casts = [
+        'skill_ids' => 'array'
+    ];
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
