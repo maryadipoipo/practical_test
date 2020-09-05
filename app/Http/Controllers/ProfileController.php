@@ -14,7 +14,7 @@ class ProfileController extends Controller
     public function profile() {
         return view('profile');
     }
-    
+
     public function getAllProfile() {
         try {
             if (! $user = JWTAuth::parseToken()->authenticate()) {
@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
     public function getProfileById(Request $request) {
         $res_failed = [
-            'message' => 'Failed to find Profile',
+            'message' => 'Find failed',
             'status'  => 'ERROR'
         ];
 
@@ -44,7 +44,7 @@ class ProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors()->toJson(), 400);
+            return response()->json($validator->errors()->toJson(), 422);
         }
 
         try {
@@ -78,7 +78,7 @@ class ProfileController extends Controller
      */
     public function createNewProfile(Request $request) {
         $validator = Validator::make($request->all(), [
-            'title'    => 'required|string|max:60',
+            'title'    => 'required|string|max:60|unique:profiles',
         ]);
 
         if($validator->fails()){
@@ -89,18 +89,18 @@ class ProfileController extends Controller
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             } else {
-                $tag = Profile::create([
+                $profile = Profile::create([
                     'title' => $request->get('title'),
                     'user_id' => $user->id,
                 ]);
-                if($tag) {
+                if($profile) {
                     return response()->json([
-                        'message' => 'Profile successfully created',
+                        'message' => 'Create success',
                         'status'  => 'OK'
                     ], 200);
                 } else {
                     return response()->json([
-                        'message' => 'Failed to create Profile',
+                        'message' => 'Create failed',
                         'status'  => 'ERROR'
                     ], 422);
                 }
@@ -164,7 +164,7 @@ class ProfileController extends Controller
      */
     public function deleteProfile(Request $request) {
         $res_failed = [
-            'message' => 'Failed to delete profile',
+            'message' => 'Delete fail',
             'status'  => 'ERROR'
         ];
 
@@ -173,7 +173,7 @@ class ProfileController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+            return response()->json($validator->errors()->toJson(), 422);
         }
 
         try {
@@ -183,10 +183,9 @@ class ProfileController extends Controller
                 $profile = Profile::find($request->get('id'));
                 $profile->user_id = $user->id;
                 if($profile->save()) {
-                    \Log::info("save okie");
                     if($profile->delete()) {
                         return response()->json([
-                            'message' => 'Profile successfully deleted',
+                            'message' => 'Delete success',
                             'status'  => 'OK'
                         ],200);
                     } else {

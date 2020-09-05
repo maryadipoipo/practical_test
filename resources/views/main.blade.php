@@ -14,6 +14,9 @@
     </head>
         
     <body>
+    <div class="style">
+        @yield('style')
+    </div>
     <div id="unauthorized"> YOU ARE NOT AUTHORIZED TO VIEW THIS PAGE </div>
     <div id="authorized">
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
@@ -48,4 +51,8 @@
     </div>
     </body>
     <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script> 
+
+    <div class="script">
+        @yield('script')
+    </div>
 </html>

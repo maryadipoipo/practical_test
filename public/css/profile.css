@@ -1,0 +1,15 @@
+.new-profile {
+    display: none;
+}
+
+.show-profile {
+    display: block;
+}
+
+i.hover:hover {
+    cursor: pointer;
+}
+
+.alert-content{
+    height: 60px;
+}
