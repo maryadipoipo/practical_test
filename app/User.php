@@ -49,6 +49,9 @@ class User extends Authenticatable implements JWTSubject
     public static function getAllUser() {
         $users = DB::table('users')
                 ->join('profiles', 'profiles.id', '=', 'users.profile_id')
+                ->where([
+                    'users.deleted_at' => null
+                ])
                 ->select(
                     'users.id',
                     'users.name',

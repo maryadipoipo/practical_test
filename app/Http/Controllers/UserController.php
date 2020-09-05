@@ -239,9 +239,9 @@ class UserController extends Controller
      */
     public function editUser(Request $request) {
         $validator = Validator::make($request->all(), [
-            'id'       => 'required',
+            'id'  => 'required',
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'username' => 'required|string|max:255',
             'profile_id' => 'required|integer',
         ]);
@@ -254,12 +254,12 @@ class UserController extends Controller
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             } else {
-                $data = $this::find($request->get('id'));
+                $data = User::find($request->get('id'));
                 $data->name = $request->get('name');
                 $data->email = $request->get('email');
                 $data->username = $request->get('username');
                 $data->profile_id = $request->get('profile_id');
-                $data->skills = $request->get('skills');
+                $data->skills = json_encode($request->get('skills'));
                 if(!empty($request->get('password'))) {
                     $data->password = Hash::make($request->get('password'));
                 }

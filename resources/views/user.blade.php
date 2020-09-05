@@ -72,6 +72,8 @@
     </tr>
   </tbody>
 </table>
+
+<input type="hidden" name="deleteUser">
 @endsection
 
 @section('script')

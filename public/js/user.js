@@ -42,7 +42,7 @@ function loadUser() {
                     "<td>"+
                         "<i class='fa fa-pencil text-success hover' aria-hidden='true' onclick='editUser(" + 
                             item.id+",`"+item.name+"`,`"+item.email+"`,"+item.profile_id+","+ item.skills +");'></i>"+
-                    "     <i class='fa fa-trash-o text-danger ml-3 hover' aria-hidden='true' onclick='deleteUser(" + item.id +",`" + item.title +"`);'></i> </td>"
+                    "     <i class='fa fa-trash-o text-danger ml-3 hover' aria-hidden='true' onclick='deleteUser(" + item.id +",`" + item.name +"`);'></i> </td>"
                 );
             });
         }).fail(function (err) {
@@ -172,7 +172,10 @@ function submitUser(event) {
         // Edit
         data = {
             id: user_id,
-            name: $('input[name="skilltitle"]').val()
+            name: $('input[name="input_name"]').val(),
+            email: $('input[name="input_email"]').val(),
+            password: $('input[name="input_password"]').val(),
+            username: $('input[name="input_name"]').val()
         };
         url = 'api/edit_user';
     } else {
@@ -220,6 +223,40 @@ function submitUser(event) {
                 setTimeout(function() {
                     $("#alert-modal").modal('hide');
                 }, 2000);
+            }
+        }).fail(function (err) {
+            $('.modal-text').html(JSON.parse(err.responseText));
+            $("#alert-modal").modal('show');
+            setTimeout(function() {
+                $("#alert-modal").modal('hide');
+            }, 2000);
+        });
+}
+
+function deleteUser(id, name) {
+    $('input[name="deleteUser"]').val(id);
+    $("#delete-modal").modal('show');
+}
+
+function cancelDelete(event) {
+    $('input[name="deleteUser"]').val('');
+    $("#delete-modal").modal('hide');
+}
+
+
+function submitDelete(event) {
+    data = {
+        id: $('input[name="deleteUser"]').val()
+    };
+    $.ajax({
+        type: 'POST',
+        headers: { 'Authorization': 'Bearer '+ localStorage.getItem('atjwt') },
+        url: 'api/delete_user',
+        data: data
+        }).done(function (resp) {
+            if (resp.status == 'OK') {
+                loadUser();
+                $("#delete-modal").modal('hide');
             }
         }).fail(function (err) {
             $('.modal-text').html(JSON.parse(err.responseText));
