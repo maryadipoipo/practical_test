@@ -32,7 +32,9 @@ class ProfileController extends Controller
         }
     }
 
-
+    /**
+     * Get profile based on id
+     */
     public function getProfileById(Request $request) {
         $res_failed = [
             'message' => 'Find failed',

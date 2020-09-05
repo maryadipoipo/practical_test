@@ -16,7 +16,7 @@ class AddNewColumnToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->softDeletes();
             $table->string('username')->default('guest_user');
-            $table->json('skill_ids')->nullable();
+            $table->json('skills')->nullable();
             $table->integer('profile_id')->unsigned()->default(1);
         });
     }

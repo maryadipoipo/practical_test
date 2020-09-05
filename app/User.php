@@ -6,20 +6,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     use SoftDeletes;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    // protected $fillable = [
-    //     'name', 'email', 'password', 'username', 'profile_id', 'skill_ids'
-    // ];
 
     /**
      * The attributes that aren't mass assignable.
@@ -48,8 +40,24 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->getKey();
     }
+
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public static function getAllUser() {
+        $users = DB::table('users')
+                ->join('profiles', 'profiles.id', '=', 'users.profile_id')
+                ->select(
+                    'users.id',
+                    'users.name',
+                    'users.email',
+                    'users.profile_id',
+                    'users.skills',
+                    'profiles.title as profile_name'
+                )
+                ->get();
+        return $users;
     }
 }

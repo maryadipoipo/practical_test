@@ -127,4 +127,104 @@ class UserController extends Controller
 
         }
     }
+
+    /**
+     * Get all users
+     */
+    public function getAllUser(Request $request) {
+        try {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            } else {
+                $data = User::getAllUser();
+                return response()->json($data, 200);
+            }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['token_absent'], $e->getStatusCode());
+        }
+    }
+
+    /**
+     * Get user by it's id
+     */
+    public function getUserById(Request $request) {
+        $res_failed = [
+            'message' => 'Find failed',
+            'status'  => 'ERROR'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'id'       => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 422);
+        }
+
+        try {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            } else {
+                $data = User::find($request->get('id'));
+                if(!empty($data)) {
+                    return response()->json([
+                        'data'    => $data,
+                        'status'  => 'OK'
+                    ],200);
+                } else {
+                    return response()->json($res_failed, 422);
+                }
+            }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['token_absent'], $e->getStatusCode());
+        }
+    }
+
+    /**
+     * Delete user based on id
+     */
+    public function deleteUser(Request $request) {
+        $res_failed = [
+            'message' => 'Delete fail',
+            'status'  => 'ERROR'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'id'       => 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 422);
+        }
+
+        try {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            } else {
+                $data = User::find($request->get('id'));
+                if($data->delete()) {
+                    return response()->json([
+                        'message' => 'Delete success',
+                        'status'  => 'OK'
+                    ],200);
+                } else {
+                    return response()->json($res_failed, 422);
+                }
+            }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['token_absent'], $e->getStatusCode());
+        }
+    }
 }
