@@ -63,4 +63,40 @@ class User extends Authenticatable implements JWTSubject
                 ->get();
         return $users;
     }
+
+    public static function getUserBySkillId($skill_ids) {
+        $res = [];
+        $users = DB::table('users')
+                ->where('deleted_at', NULL)
+                ->get();
+        foreach($users as $user) {
+            $userSkills = json_decode($user->skills, true);
+            foreach($userSkills as $skill) {
+                foreach($skill_ids as $id) {
+                    if($skill['key'] == $id) {
+                        if(!self::checkIdExists($user->id, $res)) {
+                            array_push($res, [
+                                'id' => $user->id,
+                                'name' => $user->name
+                            ]);
+                        }
+                    }
+                }
+                
+            }
+        }
+        return $res;
+    }
+
+    private static function checkIdExists($id, $arr) {
+        $ret = false;
+        foreach($arr as $ar) {
+            if ($ar['id'] == $id) {
+                $ret = true;
+                break;
+            }
+        }
+
+        return $ret;
+    }
 }

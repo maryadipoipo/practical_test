@@ -18,11 +18,12 @@ class CreateActivitiesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->integer('user_id')->unsigned();
-            $table->string('title', 60);
+            $table->string('title', 120);
             $table->text('description', 1000);
             $table->date('start_date');
             $table->date('end_date');
-            $table->json('participants')->nullable();
+            $table->json('skills');
+            $table->json('participants');
         });
     }
 

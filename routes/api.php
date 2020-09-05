@@ -30,6 +30,7 @@ Route::group(['middleware' => 'jwt.verify'], function (){
     Route::post('delete_user', 'UserController@deleteUser');
     Route::post('user_by_id', 'UserController@getUserById');
     Route::post('edit_user', 'UserController@editUser');
+    Route::get('user_by_skill_id', 'UserController@getUserBySkillId');
 
     Route::get('profile', 'ProfileController@getAllProfile');
     Route::post('create_profile', 'ProfileController@createNewProfile');

@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Page Title')
+@section('title', 'Profile')
 
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">

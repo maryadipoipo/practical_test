@@ -1,0 +1,11 @@
+.new-activity {
+    display: none;
+}
+
+.show-activity {
+    display: block;
+}
+
+i.hover:hover {
+    cursor: pointer;
+}
