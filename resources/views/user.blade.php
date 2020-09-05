@@ -8,46 +8,31 @@
 
 @section('content')
 <h3 class="mt-4"> User List </h3>
-<div class="text-right mb-2"> <a href="#"> Add New User </a> </div>
+<div class="text-right mb-2"> <a href="javascript:void(0);" id="add_new_user"> Add New User </a> </div>
+
 <!-- Form to add or edit new user -->
+<input type="hidden" name="userid">
 <form class='new-user mb-4'>
 <div class="form-group">
     <label for="exampleFormControlInput1">Name</label>
-    <input type="text" class="form-control" id="input_name" placeholder="name">
+    <input type="text" class="form-control" name="input_name" placeholder="name">
   </div>
   <div class="form-group">
     <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="input_email" placeholder="name@example.com">
+    <input type="email" class="form-control" name="input_email" placeholder="name@example.com">
   </div>
   <div class="form-group">
     <label for="exampleFormControlInput1">Password</label>
-    <input type="password" class="form-control" id="input_password" placeholder="leave this empty if you don't wanna change password">
+    <input type="password" class="form-control" name="input_password" placeholder="leave this empty if you don't wanna change password">
   </div>
   <div class="form-group">
     <label for="exampleFormControlSelect1">Profile</label>
     <select class="form-control" id="input_profile">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
     </select>
   </div>
   <div class="form-group">
     <label for="exampleFormControlSelect2">Skills</label>
-    <div class="skill">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">Skill 1</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-        <label class="form-check-label" for="inlineCheckbox2">Skill 2</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-        <label class="form-check-label" for="inlineCheckbox3">Skill 3</label>
-      </div>
+    <div id="skill_list">
     </div>
   </div>
   <div class="form-group">

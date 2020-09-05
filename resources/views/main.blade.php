@@ -48,6 +48,14 @@
             <div class="container">
                 @yield('content')
             </div>
+
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="alertModal" aria-hidden="true" id="alert-modal">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content  alert alert-primary">
+                        <div class="modal-header modal-text"> This is modal content </div>
+                    </div>
+                </div>
+            </div>
     </div>
     </body>
     <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script> 

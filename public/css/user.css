@@ -1,0 +1,11 @@
+.new-user {
+    display: none;
+}
+
+.show-user {
+    display: block;
+}
+
+i.hover:hover {
+    cursor: pointer;
+}
