@@ -118,7 +118,6 @@ function editUser(id, name, email, profile_id, skills) {
         console.log('item_id : '+ item.id);
         console.log('profile_id : '+profile_id);
         if (item.id == profile_id) {
-            console.log('sameeeeeeeeee');
             $('#input_profile').append("<option value="+ item.id  +" selected>" + item.title + "</option>");
         } else {
             $('#input_profile').append("<option value="+ item.id  +">" + item.title + "</option>");
@@ -153,8 +152,6 @@ function editUser(id, name, email, profile_id, skills) {
         }
         
     });
-    console.log(profile_id);
-    console.log(skills);
 }
 
 function resetUserFields() {

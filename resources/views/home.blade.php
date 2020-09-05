@@ -46,6 +46,37 @@
 </form>
 <!-- ################################# -->
 
+<table id="activity_table" class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
+      <th scope="col">Skills</th>
+      <th scope="col">Participants</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        <i class="fa fa-trash-o"></i>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        <i class="fa fa-trash-o"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 <input type="hidden" name="deleteActivity">

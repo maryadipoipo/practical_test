@@ -45,7 +45,7 @@ Route::group(['middleware' => 'jwt.verify'], function (){
     Route::post('skill_by_id', 'SkillController@getSkillById');
 
 
-    Route::post('activity', 'ActivityController@getAllActivities');
+    Route::get('activity', 'ActivityController@getAllActivities');
     Route::post('create_activity', 'ActivityController@createNewActivity');
     Route::post('edit_activity', 'ActivityController@editActivity');
     Route::post('delete_activity', 'ActivityController@deleteActivity');

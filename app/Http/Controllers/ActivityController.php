@@ -68,18 +68,23 @@ class ActivityController extends Controller
 
 
     /**
-     * Function to create a new Skill
+     * Function to create a new Activity
      * required fields:
-     * title = string max 60
+     * title = string max 120
+     * title
+     * start_date
+     * end_date
+     * skills
+     * participants
      */
     public function createNewActivity(Request $request) {
-        \Log::info($request);
         $validator = Validator::make($request->all(), [
-            'id'       => 'required',
-            'title'    => 'required|string|max:60',
+            'title'    => 'required|string|max:120',
             'description'    => 'required|string|max:1000',
             'start_date'    => 'required',
             'end_date'    => 'required',
+            'skills'    => 'required',
+            'participants'    => 'required',
         ]);
 
         if($validator->fails()){
@@ -96,7 +101,8 @@ class ActivityController extends Controller
                     'description' => $request->get('title'),
                     'start_date' => $request->get('start_date'),
                     'end_date' => $request->get('end_date'),
-                    'participant_ids' => $request->get('participant_ids'),
+                    'skills' => json_encode($request->get('skills')),
+                    'participants' => json_encode($request->get('participants')),
                 ]);
                 if($activity) {
                     return response()->json([
@@ -123,16 +129,23 @@ class ActivityController extends Controller
     /**
      * Function to edit Skill
      * required fields:
-     * - id of the Skill
-     * - title = string max 60
+     * id of activity
+     * title = string max 120
+     * title
+     * start_date
+     * end_date
+     * skills
+     * participants
      */
     public function editActivity(Request $request) {
         $validator = Validator::make($request->all(), [
             'id'       => 'required',
-            'title'    => 'required|string|max:60',
+            'title'    => 'required|string|max:120',
             'description'    => 'required|string|max:1000',
             'start_date'    => 'required',
             'end_date'    => 'required',
+            'skills'    => 'required',
+            'participants'    => 'required',
         ]);
 
         if($validator->fails()){
@@ -149,7 +162,8 @@ class ActivityController extends Controller
                 $activity->description = $request->get('title');
                 $activity->start_date = $request->get('start_date');
                 $activity->end_date = $request->get('end_date');
-                $activity->participant_ids = $request->get('participant_ids');
+                $activity->skills = json_encode($request->get('skills'));
+                $activity->participants = json_encode($request->get('participants'));
                 if($activity->save()) {
                     return response()->json([
                         'message' => 'Update success',
