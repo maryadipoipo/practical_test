@@ -78,7 +78,7 @@ class SkillController extends Controller
      */
     public function createNewSkill(Request $request) {
         $validator = Validator::make($request->all(), [
-            'title'    => 'required|string|max:60',
+            'title'    => 'required|string|max:60|unique:skills',
         ]);
 
         if($validator->fails()){
@@ -95,12 +95,12 @@ class SkillController extends Controller
                 ]);
                 if($skill) {
                     return response()->json([
-                        'message' => 'Skill successfully created',
+                        'message' => 'Create success',
                         'status'  => 'OK'
                     ], 200);
                 } else {
                     return response()->json([
-                        'message' => 'Failed to create Skill',
+                        'message' => 'Create fail',
                         'status'  => 'ERROR'
                     ], 422);
                 }
@@ -140,12 +140,12 @@ class SkillController extends Controller
                 $skill->user_id = $user->id;
                 if($skill->save()) {
                     return response()->json([
-                        'message' => 'Skill successfully updated',
+                        'message' => 'Update success',
                         'status'  => 'OK'
                     ], 200);
                 } else {
                     return response()->json([
-                        'message' => 'Failed to update Skill',
+                        'message' => 'Update fail',
                         'status'  => 'ERROR'
                     ], 422);
                 }
@@ -164,7 +164,7 @@ class SkillController extends Controller
      */
     public function deleteSkill(Request $request) {
         $res_failed = [
-            'message' => 'Failed to delete Skill',
+            'message' => 'Delete fail',
             'status'  => 'ERROR'
         ];
 
@@ -185,7 +185,7 @@ class SkillController extends Controller
                 if($skill->save()) {
                     if($skill->delete()) {
                         return response()->json([
-                            'message' => 'Skill successfully deleted',
+                            'message' => 'Delete success',
                             'status'  => 'OK'
                         ], 200);
                     } else {

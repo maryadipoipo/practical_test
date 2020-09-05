@@ -1,34 +1,34 @@
 $( document ).ready(function() {
-    loadProfile();
-    $('#add_new_profile').on('click', function(event) {
-       $('.new-profile').toggleClass("show-profile");
-       $('input[name="profiletitle"]').val('');
-       $('input[name="profileid"]').val('');
+    loadSkill();
+    $('#add_new_skill').on('click', function(event) {
+       $('.new-skill').toggleClass("show-skill");
+       $('input[name="skilltitle"]').val('');
+       $('input[name="skilleid"]').val('');
     });
-    $('#cancel_profile').on('click', function(event) {
-        $('.new-profile').toggleClass("show-profile");
-        $('input[name="profiletitle"]').val('');
-        $('input[name="profileid"]').val('');
+    $('#cancel_skill').on('click', function(event) {
+        $('.new-skill').toggleClass("show-skill");
+        $('input[name="skilltitle"]').val('');
+        $('input[name="skilleid"]').val('');
      });
 });
 
-function loadProfile() {
-    $('input[name="profiletitle"]').val('');
-    $('input[name="profileid"]').val('');
-    $("#profile_table > tbody").empty();
+function loadSkill() {
+    $('input[name="skilltitle"]').val('');
+    $('input[name="skilleid"]').val('');
+    $("#skill_table > tbody").empty();
     $.ajax({
         type: 'GET',
-        url: 'api/profile',
+        url: 'api/skill',
         headers: { 'Authorization': 'Bearer '+ localStorage.getItem('atjwt') }
         }).done(function (resp) {
             $.each(resp, function(i, item) {
                 console.log(i);
                 console.log(item);
-                $('#profile_table > tbody:last-child').append("<tr id=profile_row_"+ item.id + ">" +
+                $('#skill_table > tbody:last-child').append("<tr id=skill_row_"+ item.id + ">" +
                     "<th scope='row'>"+ (i+1) + "</th>" + 
                     "<td>"+ item.title + "</td>" +
-                    "<td> <i class='fa fa-pencil text-success hover' aria-hidden='true' onclick='editProfile(" + item.id +",`" + item.title +"`);'></i>"+
-                    "     <i class='fa fa-trash-o text-danger ml-3 hover' aria-hidden='true' onclick='deleteProfile(" + item.id +",`" + item.title +"`);'></i> </td>"
+                    "<td> <i class='fa fa-pencil text-success hover' aria-hidden='true' onclick='editSkill(" + item.id +",`" + item.title +"`);'></i>"+
+                    "     <i class='fa fa-trash-o text-danger ml-3 hover' aria-hidden='true' onclick='deleteSkill(" + item.id +",`" + item.title +"`);'></i> </td>"
                 );
             });
         }).fail(function (err) {
@@ -41,38 +41,23 @@ function loadProfile() {
         });
 }
 
-
-function editProfile(id, title) {
-    if (!$('.new-profile').hasClass("show-profile")) {
-        $('.new-profile').addClass("show-profile");
-    }
-
-    $('input[name="profiletitle"]').val(title);
-    $('input[name="profileid"]').val(id);
-}
-
-function deleteProfile(id) {
-    $('input[name="deleteprofile"]').val(id);
-    $("#delete-modal").modal('show');
-}
-
-function submitProfile(event) {
+function submitSkill(event) {
     event.preventDefault();
-    profile_id = $('input[name="profileid"]').val();
+    skill_id = $('input[name="skillid"]').val();
     url = '';
-    if(profile_id) {
+    if(skill_id) {
         // Edit
         data = {
-            id: profile_id,
-            title: $('input[name="profiletitle"]').val()
+            id: skill_id,
+            title: $('input[name="skilltitle"]').val()
         };
-        url = 'api/edit_profile';
+        url = 'api/edit_skill';
     } else {
         // Create
         data = {
-            title: $('input[name="profiletitle"]').val()
+            title: $('input[name="skilltitle"]').val()
         };
-        url = 'api/create_profile';
+        url = 'api/create_skill';
     }
 
     $.ajax({
@@ -82,7 +67,7 @@ function submitProfile(event) {
         data: data
         }).done(function (resp) {
             if (resp.status == 'OK') {
-                loadProfile();
+                loadSkill();
                 $('.modal-text').html(resp.message);
                 $("#alert-modal").modal('show');
                 setTimeout(function() {
@@ -99,23 +84,38 @@ function submitProfile(event) {
 }
 
 
+function editSkill(id, title) {
+    if (!$('.new-skill').hasClass("show-skill")) {
+        $('.new-skill').addClass("show-skill");
+    }
+
+    $('input[name="skilltitle"]').val(title);
+    $('input[name="skillid"]').val(id);
+}
+
+function deleteSkill(id) {
+    $('input[name="deleteskill"]').val(id);
+    $("#delete-modal").modal('show');
+}
+
+
 function cancelDelete(event) {
-    $('input[name="deleteprofile"]').val('');
+    $('input[name="deleteskill"]').val('');
     $("#delete-modal").modal('hide');
 }
 
-function submitDeleteProfile(event) {
+function submitDeleteSkill(event) {
     data = {
-        id: $('input[name="deleteprofile"]').val()
+        id: $('input[name="deleteskill"]').val()
     };
     $.ajax({
         type: 'POST',
         headers: { 'Authorization': 'Bearer '+ localStorage.getItem('atjwt') },
-        url: 'api/delete_profile',
+        url: 'api/delete_skill',
         data: data
         }).done(function (resp) {
             if (resp.status == 'OK') {
-                loadProfile();
+                loadSkill();
                 $("#delete-modal").modal('hide');
             }
         }).fail(function (err) {

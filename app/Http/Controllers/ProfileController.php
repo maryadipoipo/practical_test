@@ -140,12 +140,12 @@ class ProfileController extends Controller
                 $profile->user_id = $user->id;
                 if($profile->save()) {
                     return response()->json([
-                        'message' => 'Profile successfully updated',
+                        'message' => 'Update success',
                         'status'  => 'OK'
                     ], 200);
                 } else {
                     return response()->json([
-                        'message' => 'Failed to update profile',
+                        'message' => 'Update fail',
                         'status'  => 'ERROR'
                     ], 422);
                 }

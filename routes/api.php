@@ -33,7 +33,7 @@ Route::group(['middleware' => 'jwt.verify'], function (){
     Route::post('delete_profile', 'ProfileController@deleteProfile');
     Route::post('profile_by_id', 'ProfileController@getProfileById');
 
-    Route::post('skill', 'SkillController@getAllSkills');
+    Route::get('skill', 'SkillController@getAllSkills');
     Route::post('create_skill', 'SkillController@createNewSkill');
     Route::post('edit_skill', 'SkillController@editSkill');
     Route::post('delete_skill', 'SkillController@deleteSkill');
