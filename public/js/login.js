@@ -12,9 +12,12 @@ $( document ).ready(function() {
         }).done(function (response) {
             localStorage.setItem("atjwt", response.token);
             window.location.href = "/home";
-        }).fail(function (error) {
-            // @todo show error pop here
-            console.log(error)
+        }).fail(function (err) {
+            $('.modal-text').html(JSON.parse(err.responseText).error);
+            $("#alert-modal").modal('show');
+            setTimeout(function() {
+                $("#alert-modal").modal('hide');
+            }, 2000);
         });
     });
 });
