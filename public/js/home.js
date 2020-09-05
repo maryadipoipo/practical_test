@@ -87,9 +87,10 @@ function editActivity(item) {
     if (!$('.new-activity').hasClass("show-activity")) {
         $('.new-activity').addClass("show-activity");
     }
-    $('input[name="input_title"]').val(item.title),
-    $('input[name="input_start_date"]').val(item.start),
-    $('input[name="input_end_date"]').val(item.end),
+    $('input[name="activityid"]').val(item.id);
+    $('input[name="input_title"]').val(item.title);
+    $('input[name="input_start_date"]').val(item.start);
+    $('input[name="input_end_date"]').val(item.end);
     $('textarea[name="input_description"]').val(item.desc)
 
     // Adjust skills
@@ -124,6 +125,7 @@ function editActivity(item) {
 
     // Adjust participants
     if (skill_ids.length > 0) {
+        $('#input_participants').empty();
         $.ajax({
             type: 'GET',
             url: 'api/user_by_skill_id',
@@ -165,7 +167,8 @@ function editActivity(item) {
 }
 
 function deleteActivity(id) {
-
+    $('input[name="deleteActivity"]').val(id);
+    $("#delete-modal").modal('show');
 }
 
 function loadSkills() {
@@ -227,7 +230,7 @@ function skillChange() {
 
 function submitActivity(event) {
     event.preventDefault();
-    activity_id = $('input[name="userid"]').val();
+    activity_id = $('input[name="activityid"]').val();
     url = '';
     if(activity_id) {
         // Edit
@@ -283,6 +286,35 @@ function submitActivity(event) {
                 setTimeout(function() {
                     $("#alert-modal").modal('hide');
                 }, 2000);
+            }
+        }).fail(function (err) {
+            $('.modal-text').html(JSON.parse(err.responseText));
+            $("#alert-modal").modal('show');
+            setTimeout(function() {
+                $("#alert-modal").modal('hide');
+            }, 2000);
+        });
+}
+
+function cancelDelete(event) {
+    $('input[name="deleteActivity"]').val('');
+    $("#delete-modal").modal('hide');
+}
+
+
+function submitDelete(event) {
+    data = {
+        id: $('input[name="deleteActivity"]').val()
+    };
+    $.ajax({
+        type: 'POST',
+        headers: { 'Authorization': 'Bearer '+ localStorage.getItem('atjwt') },
+        url: 'api/delete_activity',
+        data: data
+        }).done(function (resp) {
+            if (resp.status == 'OK') {
+                loadActivity();
+                $("#delete-modal").modal('hide');
             }
         }).fail(function (err) {
             $('.modal-text').html(JSON.parse(err.responseText));
