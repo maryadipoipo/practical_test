@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -51,19 +52,37 @@ class UserController extends Controller
             return response()->json($validator->errors()->toJson(), 422);
         }
 
-        $user = User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),
-            'username' => $request->get('email'),
-            'profile_id' => $request->get('profile_id'),
-            'skills' => json_encode($request->get('skills'))
-        ]);
+        try {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            } else {
 
-        $token = JWTAuth::fromUser($user);
-        $status = 'OK';
-        $message = 'Create success';
-        return response()->json(compact('user','token', 'status', 'message'), 201);
+                // ONLY BOARD USER CAN REGISTER NEW USER
+                if (!parent::checkAccess($user->profile_id, 'board')) {
+                    return response()->json(['Only BOARD user can register new user'], 422);
+                }
+
+                $user = User::create([
+                    'name' => $request->get('name'),
+                    'email' => $request->get('email'),
+                    'password' => Hash::make($request->get('password')),
+                    'username' => $request->get('email'),
+                    'profile_id' => $request->get('profile_id'),
+                    'skills' => json_encode($request->get('skills'))
+                ]);
+
+                $token = JWTAuth::fromUser($user);
+                $status = 'OK';
+                $message = 'Create success';
+                return response()->json(compact('user','token', 'status', 'message'), 201);
+            }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['token_absent'], $e->getStatusCode());
+        }
     }
     
     /**
@@ -88,8 +107,8 @@ class UserController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
 
         }
-
-        return response()->json(compact('user'));
+        $profile = Profile::find($user->profile_id);
+        return response()->json(compact('user', 'profile'));
     }
 
     /**

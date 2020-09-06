@@ -30,9 +30,8 @@ function getAuthenticatedUser() {
             setTimeout(function(){ 
                 window.location.href = "/";
             }, 3000);
-            
-        }			
-        $('#userName').html("Welcome <b>"+resp.user.name+"</b>");
+        }
+        $('#userName').html("<b>"+resp.user.name+"</b> - "+ resp.profile.title +"");
     }).fail(function (err) {
         $('#unauthorized').css('display', 'block');
         $('#authorized').css('display', 'none');

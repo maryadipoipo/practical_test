@@ -203,9 +203,7 @@ function submitUser(event) {
             skill_name: $(this).attr('data-name')
         });
     });
-    //console.log(skill_data);
     data.skills = skill_data;
-    console.log(data);
 
     $.ajax({
         type: 'POST',

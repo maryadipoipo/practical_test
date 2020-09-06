@@ -38,6 +38,9 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
+                    <p id="userName" class="my-2 mr-4 text-warning"> UserName </p>
+                </form>
+                <form class="form-inline my-2 my-lg-0">
                     <button id="logout_btn" class="btn my-2 my-sm-0 text-white">Logout</button>
                 </form>
             </div>

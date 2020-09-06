@@ -95,6 +95,11 @@ class ActivityController extends Controller
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             } else {
+                // ONLY EXPERT USER CAN REGISTER NEW ACTIVITY
+                if (!parent::checkAccess($user->profile_id, 'expert')) {
+                    return response()->json(['Only EXPERT user can create new activity'], 422);
+                }
+
                 $activity = Activity::create([
                     'title' => $request->get('title'),
                     'user_id' => $user->id,
@@ -156,6 +161,10 @@ class ActivityController extends Controller
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             } else {
+                // ONLY EXPERT USER CAN EDIT ACTIVITY
+                if (!parent::checkAccess($user->profile_id, 'expert')) {
+                    return response()->json(['Only EXPERT user can update activity'], 422);
+                }
                 $activity = Activity::find($request->get('id'));
                 $activity->title = $request->get('title');
                 $activity->user_id = $user->id;
@@ -206,6 +215,10 @@ class ActivityController extends Controller
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             } else {
+                // ONLY EXPERT USER CAN DELETE
+                if (!parent::checkAccess($user->profile_id, 'expert')) {
+                    return response()->json(['Only EXPERT user can delete activity'], 422);
+                }
                 $activity = Activity::find($request->get('id'));
                 $activity->user_id = $user->id;
                 if($activity->save()) {
