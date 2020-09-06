@@ -1,0 +1,405 @@
+{
+	"variables": [],
+	"info": {
+		"name": "kpi_institute_test",
+		"_postman_id": "fed7c576-e1ff-7a3e-6541-95f9379ada6d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8000/api/register",
+			"request": {
+				"url": "localhost:8000/api/register",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "kpi_admin",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "kpi@institute.net",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "admin123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "profile_id",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "kpi_admin",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/login",
+			"request": {
+				"url": "localhost:8000/api/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "kpi@institute.net",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin123",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/users",
+			"request": {
+				"url": "localhost:8000/api/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTI3MzIyOCwiZXhwIjoxNTk5Mjc2ODI4LCJuYmYiOjE1OTkyNzMyMjgsImp0aSI6Im9Oa0xOR3NsdW1GeEMzRjciLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.us5iROvB74LRj6RHX6D1CnonUMj-zCw6X1FToiOf4Ao",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/user_by_skill_id",
+			"request": {
+				"url": "localhost:8000/api/user_by_skill_id",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTI3MzIyOCwiZXhwIjoxNTk5Mjc2ODI4LCJuYmYiOjE1OTkyNzMyMjgsImp0aSI6Im9Oa0xOR3NsdW1GeEMzRjciLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.us5iROvB74LRj6RHX6D1CnonUMj-zCw6X1FToiOf4Ao",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/create_profile",
+			"request": {
+				"url": "localhost:8000/api/create_profile",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTI1NjQ0OCwiZXhwIjoxNTk5MjYwMDQ4LCJuYmYiOjE1OTkyNTY0NDgsImp0aSI6IkRvbEJURlFHNkFTem45UHoiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.lsmz5Kc_Eh7sCvLJ8TpT5gnbVG-xTZ40imvC2GCFwPQ",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "profile_1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/profile",
+			"request": {
+				"url": "localhost:8000/api/profile",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTIzMjUxOSwiZXhwIjoxNTk5MjM2MTE5LCJuYmYiOjE1OTkyMzI1MTksImp0aSI6IlVrRHB0UHl0OVlMUTlNYkUiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.AJ82gqqg6tXVseqEmrM8WoahtzuBHdudejDSShPNopc",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/edit_profile",
+			"request": {
+				"url": "localhost:8000/api/edit_profile",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTIyODU4NiwiZXhwIjoxNTk5MjMyMTg2LCJuYmYiOjE1OTkyMjg1ODYsImp0aSI6Ino2ZVZndjl5eGMyUFBZbHEiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ._xIlPGyGHTyosF-upw9yxk0TqZcFBGTT9TvaYhurJq0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "edited_profile",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/profile_by_id",
+			"request": {
+				"url": "localhost:8000/api/profile_by_id",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTIyODU4NiwiZXhwIjoxNTk5MjMyMTg2LCJuYmYiOjE1OTkyMjg1ODYsImp0aSI6Ino2ZVZndjl5eGMyUFBZbHEiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ._xIlPGyGHTyosF-upw9yxk0TqZcFBGTT9TvaYhurJq0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/delete_profile",
+			"request": {
+				"url": "localhost:8000/api/delete_profile",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTIyODU4NiwiZXhwIjoxNTk5MjMyMTg2LCJuYmYiOjE1OTkyMjg1ODYsImp0aSI6Ino2ZVZndjl5eGMyUFBZbHEiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ._xIlPGyGHTyosF-upw9yxk0TqZcFBGTT9TvaYhurJq0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/skill",
+			"request": {
+				"url": "localhost:8000/api/skill",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTI2ODE0MiwiZXhwIjoxNTk5MjcxNzQyLCJuYmYiOjE1OTkyNjgxNDIsImp0aSI6ImRLQ1NNbFBXcmxiUEpkNXciLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.-N3rXbT5sQvQdWnFBtjX3SBBTKAxALS1aKK9sYzeW30",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/create_skill",
+			"request": {
+				"url": "localhost:8000/api/create_skill",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTI2ODE0MiwiZXhwIjoxNTk5MjcxNzQyLCJuYmYiOjE1OTkyNjgxNDIsImp0aSI6ImRLQ1NNbFBXcmxiUEpkNXciLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.-N3rXbT5sQvQdWnFBtjX3SBBTKAxALS1aKK9sYzeW30",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "laravel",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/edit_skill",
+			"request": {
+				"url": "localhost:8000/api/edit_skill",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTIyODU4NiwiZXhwIjoxNTk5MjMyMTg2LCJuYmYiOjE1OTkyMjg1ODYsImp0aSI6Ino2ZVZndjl5eGMyUFBZbHEiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ._xIlPGyGHTyosF-upw9yxk0TqZcFBGTT9TvaYhurJq0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "edited_skill",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/skill_by_id",
+			"request": {
+				"url": "localhost:8000/api/skill_by_id",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTIyODU4NiwiZXhwIjoxNTk5MjMyMTg2LCJuYmYiOjE1OTkyMjg1ODYsImp0aSI6Ino2ZVZndjl5eGMyUFBZbHEiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ._xIlPGyGHTyosF-upw9yxk0TqZcFBGTT9TvaYhurJq0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/delete_skill",
+			"request": {
+				"url": "localhost:8000/api/delete_skill",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTIyODU4NiwiZXhwIjoxNTk5MjMyMTg2LCJuYmYiOjE1OTkyMjg1ODYsImp0aSI6Ino2ZVZndjl5eGMyUFBZbHEiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ._xIlPGyGHTyosF-upw9yxk0TqZcFBGTT9TvaYhurJq0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/create_activity",
+			"request": {
+				"url": "localhost:8000/api/create_activity",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5OTIzMjUxOSwiZXhwIjoxNTk5MjM2MTE5LCJuYmYiOjE1OTkyMzI1MTksImp0aSI6IlVrRHB0UHl0OVlMUTlNYkUiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.AJ82gqqg6tXVseqEmrM8WoahtzuBHdudejDSShPNopc",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"laravel training\",\n    \"start_date\": \"2020-09-04\",\n    \"start_date\": \"2020-09-08\",\n    \"description\": \"this is a laravel training for everyone in this universe\",\n    \"participant_ids\": [1, 2, 3]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

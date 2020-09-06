@@ -103,7 +103,7 @@ class ActivityController extends Controller
                 $activity = Activity::create([
                     'title' => $request->get('title'),
                     'user_id' => $user->id,
-                    'description' => $request->get('title'),
+                    'description' => $request->get('description'),
                     'start_date' => $request->get('start_date'),
                     'end_date' => $request->get('end_date'),
                     'skills' => json_encode($request->get('skills')),
@@ -168,7 +168,7 @@ class ActivityController extends Controller
                 $activity = Activity::find($request->get('id'));
                 $activity->title = $request->get('title');
                 $activity->user_id = $user->id;
-                $activity->description = $request->get('title');
+                $activity->description = $request->get('description');
                 $activity->start_date = $request->get('start_date');
                 $activity->end_date = $request->get('end_date');
                 $activity->skills = json_encode($request->get('skills'));
